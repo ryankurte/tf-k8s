@@ -2,17 +2,17 @@
 PRE=aws-vault exec personal
 
 plan:
-	$(PRE) terraform plan
+	$(PRE) -- terraform plan
 
 apply:
-	$(PRE) terraform apply
+	$(PRE) -- terraform apply
 
 destroy:
-	$(PRE) terraform destroy
+	$(PRE) -- terraform destroy
 
 configure:
-	$(PRE) kubectl apply -f config_map_aws_auth.yaml
+	$(PRE) -- kubectl --kubeconfig .kube/config apply -f config_map_aws_auth.yml
 
 nodes:
-	$(PRE) kubectl get nodes --watch
+	$(PRE) -- kubectl --kubeconfig .kube/config get nodes --watch
 
